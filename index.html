@@ -1,73 +1,212 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="UNIF TGH">
-    <meta property="og:description" content="Website resmi untuk membeli unif resmi dari SQUAD TGH.">
+    <meta property="og:title" content="UNIF TGH - Official Store">
+    <meta property="og:description" content="Katalog resmi Unif Squad The Galactic Hunter.">
     <meta property="og:image" content="https://files.catbox.moe/a952mw.jpg">
-    <meta property="og:url" content="https://tgh-store.vercel.app">
-    <title>List Produk Unif TGH</title>
-    <link rel="stylesheet" href="style.css">
+    <title>TGH Store | Official Unif</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-</head>
-<body>
 
-    <header>
-        <h1 class="animate__animated animate__fadeInDown">Daftar Produk Unif</h1>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a', // Slate 950
+                            card: '#1e293b', // Slate 800
+                            accent: '#e11d48', // Rose 600
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e11d48; 
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-200 antialiased min-h-screen flex flex-col">
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-accent/20 rounded-full blur-[128px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-600/10 rounded-full blur-[128px]"></div>
+    </div>
+
+    <header class="pt-16 pb-8 text-center px-4 animate__animated animate__fadeInDown">
+        <span class="text-brand-accent font-semibold tracking-wider text-sm uppercase">Official Store</span>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-4 drop-shadow-lg">
+            UNIF <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-orange-400">TGH</span>
+        </h1>
+        <p class="text-slate-400 max-w-lg mx-auto text-sm md:text-base">
+            Lengkapi identitasmu sebagai bagian dari Squad <span class="text-slate-200 font-medium">The Galactic Hunter</span>.
+        </p>
     </header>
 
-    <!-- Dropdown Filter -->
-    <div class="filter animate__animated animate__fadeInUp">
-        <label for="category">Kategori:</label>
-        <select id="category">
-            <option value="all">Semua</option>
-            <option value="free">Gratis</option>
-            <option value="sell">Jual</option>
-        </select>
+    <div class="container mx-auto px-4 mb-12 flex justify-center animate__animated animate__fadeInUp">
+        <div class="relative group">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-brand-accent to-orange-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+            <div class="relative flex items-center bg-brand-card rounded-lg p-1">
+                <span class="pl-4 text-slate-400 text-sm">Kategori:</span>
+                <select id="category" class="bg-transparent text-white text-sm font-medium py-2 pl-2 pr-8 rounded focus:outline-none cursor-pointer">
+                    <option value="all" class="bg-brand-card">Semua Item</option>
+                    <option value="free" class="bg-brand-card">Item Gratis</option>
+                    <option value="sell" class="bg-brand-card">Item Berbayar</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="product-list animate__animated animate__fadeIn animate__delay-1s">
-        <div class="product free">
-            <img src="gambar/unif-baru.jpg" alt="Produk 1">
-            <h2>Blood Moon</h2>
-            <p class="price">💰 Gratis</p>
-            <a href="https://docs.google.com/document/d/1hu_Gm3BXDTHa2-6ZryakJFBOhV9qzAmIh3su0FhLa0E/edit?usp=drivesdk" class="btn">Dapatkan Sekarang</a>
-        </div>
+    <main class="container mx-auto px-4 max-w-6xl pb-20 flex-grow">
+        <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate__animated animate__fadeIn animate__delay-1s">
             
-        <div class="product sell">
-            <img src="gambar/unif-v1.jpg" alt="Produk 1">
-            <h2>Pink Moon</h2>
-            <p class="price">💰 2.500 Coin</p>
-            <a href="https://wa.me/62882019632673?text=Halo,+nama+saya+*ISI_NAMA_KAMU*+dari+Squad+`The+Galactic+Hunter`.+Mau+beli+*Unif+TGH+Pink+Moon*" class="btn">Beli Via WhatsApp</a>
-        </div>
+            <div class="product-card group relative bg-brand-card/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl overflow-hidden hover:border-brand-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-accent/10 hover:-translate-y-1" data-category="free">
+                <div class="relative overflow-hidden h-64">
+                    <img src="gambar/unif-baru.jpg" alt="Blood Moon" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-3 left-3 bg-green-500/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                        FREE
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-white mb-1 group-hover:text-brand-accent transition-colors">Blood Moon</h2>
+                    <p class="text-slate-400 text-sm mb-4">Edisi standar untuk semua anggota.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-green-400 font-bold text-lg">Gratis</span>
+                        <a href="https://docs.google.com/document/d/1hu_Gm3BXDTHa2-6ZryakJFBOhV9qzAmIh3su0FhLa0E/edit?usp=drivesdk" class="bg-slate-700 hover:bg-slate-600 text-white text-sm font-medium py-2 px-4 rounded-lg transition-colors">
+                            Ambil
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="product sell">
-            <img src="gambar/unif-v2.jpg" alt="Produk 2">
-            <h2>Midnight Hunter</h2>
-            <p class="price">💰 4.000 Coin</p>
-            <a href="https://wa.me/62882019632673?text=Halo,+nama+saya+*ISI_NAMA_KAMU*+dari+Squad+`The+Galactic+Hunter`.+Mau+beli+*Unif+TGH+Midnight+Hunter" class="btn">Beli Via WhatsApp</a>
-        </div>
+            <div class="product-card group relative bg-brand-card/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl overflow-hidden hover:border-brand-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-accent/10 hover:-translate-y-1" data-category="sell">
+                <div class="relative overflow-hidden h-64">
+                    <img src="gambar/unif-v1.jpg" alt="Pink Moon" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-3 left-3 bg-brand-accent/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                        PREMIUM
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-white mb-1 group-hover:text-brand-accent transition-colors">Pink Moon</h2>
+                    <p class="text-slate-400 text-sm mb-4">Desain elegan dengan sentuhan soft pink.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-brand-accent font-bold text-lg">2.500 Coin</span>
+                        <a href="https://wa.me/62882019632673?text=Halo,+nama+saya+*ISI_NAMA_KAMU*+dari+Squad+`The+Galactic+Hunter`.+Mau+beli+*Unif+TGH+Pink+Moon*" class="bg-gradient-to-r from-brand-accent to-red-600 hover:from-red-500 hover:to-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                            Beli
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="product sell">
-            <img src="gambar/unif-nebula.jpg" alt="Produk 3">
-            <h2>Nebula Butterfly</h2>
-            <p class="price">💰 5.500</p>
-            <a href="https://wa.me/62882019632673?text=Halo,+nama+saya+*ISI_NAMA_KAMU*+dari+Squad+`The+Galactic+Hunter`.+Mau+beli+*Unif+TGH+Nebula+Butterfly" class="btn">Beli Via WhatsApp</a>
-        </div>
+            <div class="product-card group relative bg-brand-card/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl overflow-hidden hover:border-brand-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-accent/10 hover:-translate-y-1" data-category="sell">
+                <div class="relative overflow-hidden h-64">
+                    <img src="gambar/unif-v2.jpg" alt="Midnight Hunter" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-white mb-1 group-hover:text-brand-accent transition-colors">Midnight Hunter</h2>
+                    <p class="text-slate-400 text-sm mb-4">Dominasi malam dengan warna gelap.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-brand-accent font-bold text-lg">4.000 Coin</span>
+                        <a href="https://wa.me/62882019632673?text=Halo,+nama+saya+*ISI_NAMA_KAMU*+dari+Squad+`The+Galactic+Hunter`.+Mau+beli+*Unif+TGH+Midnight+Hunter" class="bg-gradient-to-r from-brand-accent to-red-600 hover:from-red-500 hover:to-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                            Beli
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="product sell">
-            <img src="gambar/unif-v3.jpg" alt="Produk 4">
-            <h2>Phantom Eclipse</h2>
-            <p class="price">💰 7.000 Coin</p>
-            <a href="https://wa.me/62882019632673?text=Halo,+nama+saya+*ISI_NAMA_KAMU*+dari+Squad+`The+Galactic+Hunter`.+Mau+beli+*Unif+TGH+Phantom+Eclipse" class="btn">Beli Via WhatsApp</a>
-        </div>
-    </div>
+            <div class="product-card group relative bg-brand-card/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl overflow-hidden hover:border-brand-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-accent/10 hover:-translate-y-1" data-category="sell">
+                <div class="relative overflow-hidden h-64">
+                    <img src="gambar/unif-nebula.jpg" alt="Nebula Butterfly" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-white mb-1 group-hover:text-brand-accent transition-colors">Nebula Butterfly</h2>
+                    <p class="text-slate-400 text-sm mb-4">Kombinasi warna kosmik yang indah.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-brand-accent font-bold text-lg">5.500 Coin</span>
+                        <a href="https://wa.me/62882019632673?text=Halo,+nama+saya+*ISI_NAMA_KAMU*+dari+Squad+`The+Galactic+Hunter`.+Mau+beli+*Unif+TGH+Nebula+Butterfly" class="bg-gradient-to-r from-brand-accent to-red-600 hover:from-red-500 hover:to-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                            Beli
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-    <footer class="animate__animated animate__fadeInUp">
-        <p>&copy; 2025 - TGH | Dibuat Oleh EllzXn</p>
+            <div class="product-card group relative bg-brand-card/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl overflow-hidden hover:border-brand-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-brand-accent/10 hover:-translate-y-1" data-category="sell">
+                <div class="relative overflow-hidden h-64">
+                    <img src="gambar/unif-v3.jpg" alt="Phantom Eclipse" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-3 left-3 bg-purple-600/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                        LIMITED
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h2 class="text-xl font-bold text-white mb-1 group-hover:text-brand-accent transition-colors">Phantom Eclipse</h2>
+                    <p class="text-slate-400 text-sm mb-4">Unif paling eksklusif dan misterius.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-brand-accent font-bold text-lg">7.000 Coin</span>
+                        <a href="https://wa.me/62882019632673?text=Halo,+nama+saya+*ISI_NAMA_KAMU*+dari+Squad+`The+Galactic+Hunter`.+Mau+beli+*Unif+TGH+Phantom+Eclipse" class="bg-gradient-to-r from-brand-accent to-red-600 hover:from-red-500 hover:to-red-700 text-white text-sm font-medium py-2 px-4 rounded-lg shadow-lg shadow-brand-accent/20 transition-all">
+                            Beli
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-brand-dark/80 border-t border-slate-800 text-center py-8 animate__animated animate__fadeInUp">
+        <p class="text-slate-500 text-sm">
+            &copy; 2025 <span class="text-brand-accent font-semibold">TGH</span> Squad. All rights reserved.
+        </p>
+        <p class="text-slate-600 text-xs mt-2">Dibuat dengan ❤️ oleh EllzXn</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById("category").addEventListener("change", function () {
+            let category = this.value;
+            let products = document.querySelectorAll(".product-card");
+
+            products.forEach(product => {
+                if (category === "all") {
+                    product.classList.remove("hidden");
+                    product.classList.add("animate__fadeIn"); // Tambah animasi saat muncul
+                } else {
+                    if (product.dataset.category === category) {
+                        product.classList.remove("hidden");
+                        product.classList.add("animate__fadeIn");
+                    } else {
+                        product.classList.add("hidden");
+                        product.classList.remove("animate__fadeIn");
+                    }
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
