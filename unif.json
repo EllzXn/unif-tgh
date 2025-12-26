@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Blood Moon",
+    "category": "free",
+    "price": 0,
+    "displayPrice": "Gratis",
+    "description": "Edisi standar untuk semua anggota.",
+    "image": "gambar/unif-baru.jpg",
+    "badge": "FREE",
+    "badgeColor": "bg-green-500/90",
+    "link": "https://docs.google.com/document/d/1hu_Gm3BXDTHa2-6ZryakJFBOhV9qzAmIh3su0FhLa0E/edit?usp=drivesdk"
+  },
+  {
+    "id": 2,
+    "name": "Pink Moon",
+    "category": "sell",
+    "price": 2500,
+    "displayPrice": "2.500 Coin",
+    "description": "Desain elegan dengan sentuhan soft pink.",
+    "image": "gambar/unif-v1.jpg",
+    "badge": "PREMIUM",
+    "badgeColor": "bg-brand-accent/90",
+    "link": ""
+  },
+  {
+    "id": 3,
+    "name": "Midnight Hunter",
+    "category": "sell",
+    "price": 4000,
+    "displayPrice": "4.000 Coin",
+    "description": "Dominasi malam dengan warna gelap.",
+    "image": "gambar/unif-v2.jpg",
+    "badge": "BEST SELLER",
+    "badgeColor": "bg-blue-600/90",
+    "link": ""
+  },
+  {
+    "id": 4,
+    "name": "Nebula Butterfly",
+    "category": "sell",
+    "price": 5500,
+    "displayPrice": "5.500 Coin",
+    "description": "Kombinasi warna kosmik yang indah.",
+    "image": "gambar/unif-nebula.jpg",
+    "badge": "NEW",
+    "badgeColor": "bg-indigo-500/90",
+    "link": ""
+  },
+  {
+    "id": 5,
+    "name": "Phantom Eclipse",
+    "category": "sell",
+    "price": 7000,
+    "displayPrice": "7.000 Coin",
+    "description": "Unif paling eksklusif dan misterius.",
+    "image": "gambar/unif-v3.jpg",
+    "badge": "LIMITED",
+    "badgeColor": "bg-purple-600/90",
+    "link": ""
+  }
+]
