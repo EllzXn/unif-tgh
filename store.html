@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="TGH Official Store">
+<meta property="og:description" content="Official Unif untuk Squad The Galactic Hunter.">
+<meta property="og:image" content="https://files.catbox.moe/a952mw.jpg"> <meta property="og:url" content="https://t-gh.vercel.app">
+    <title>TGH Official Store</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#0a0a0a',       // Hitam Matte (Bukan hitam pekat #000)
+                            surface: '#171717',  // Abu Gelap untuk Card
+                            border: '#262626',   // Garis tipis halus
+                            red: '#e11d48',      // Merah Elegan (Rose-600)
+                            hover: '#be123c',    // Merah lebih gelap untuk hover
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Hilangkan scrollbar default, ganti dengan yang minimalis */
+        body::-webkit-scrollbar { width: 6px; }
+        body::-webkit-scrollbar-track { background: #0a0a0a; }
+        body::-webkit-scrollbar-thumb { background: #262626; border-radius: 10px; }
+
+        /* Utilitas untuk Image Aspect Ratio */
+        .aspect-card {
+            aspect-ratio: 4/3;
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-zinc-300 font-sans antialiased min-h-screen flex flex-col">
+
+    <nav class="fixed w-full z-50 top-0 bg-brand-bg/80 backdrop-blur-lg border-b border-brand-border">
+        <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="font-bold text-xl tracking-tight text-white">
+                    UNIF<span class="text-brand-red">TGH</span>.
+                </div>
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-medium text-zinc-500">
+                <a href="#" class="hover:text-white transition-colors">Home</a>
+                <a href="#" class="text-white">Store</a>
+                <a href="#" class="hover:text-white transition-colors">Squad</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 px-6 text-center animate__animated animate__fadeIn">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-brand-border text-xs font-medium text-zinc-400 mb-6">
+            <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+            Official Merchandise
+        </span>
+        <h1 class="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4">
+            Gear Up for the <br class="hidden md:block" /> <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">Galactic Hunt.</span>
+        </h1>
+        <p class="text-zinc-500 text-lg max-w-xl mx-auto leading-relaxed">
+            Koleksi eksklusif unif dan aksesori digital untuk anggota The Galactic Hunter.
+        </p>
+    </header>
+
+    <div class="container mx-auto px-6 mb-12 animate__animated animate__fadeInUp">
+        <div class="flex flex-wrap justify-center gap-3" id="filter-container">
+            <button onclick="filterSelection('all', this)" class="filter-btn active px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-white text-black shadow-lg shadow-white/10 ring-2 ring-white transform hover:-translate-y-0.5">
+                All Items
+            </button>
+            <button onclick="filterSelection('free', this)" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 bg-brand-surface border border-brand-border text-zinc-400 hover:text-white hover:border-zinc-600 hover:bg-brand-border">
+                Free Access
+            </button>
+            <button onclick="filterSelection('sell', this)" class="filter-btn px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 bg-brand-surface border border-brand-border text-zinc-400 hover:text-white hover:border-zinc-600 hover:bg-brand-border">
+                Premium
+            </button>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 max-w-7xl pb-24 flex-grow">
+        <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 animate__animated animate__fadeIn">
+            </div>
+    </main>
+
+    <footer class="border-t border-brand-border py-12 bg-brand-bg mt-auto">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-zinc-600 text-sm">
+                &copy; 2025 TGH Store. All rights reserved.
+            </p>
+            <div class="flex gap-4">
+                <span class="w-3 h-3 rounded-full bg-zinc-800"></span>
+                <span class="w-3 h-3 rounded-full bg-zinc-800"></span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Produk akan di-fetch, tapi logic filter ada di sini
+        let allProducts = [];
+
+        function generateWALink(productName) {
+            const phone = "62882019632673";
+            const text = `Halo Admin TGH, saya ingin membeli *${productName}*. Mohon info pembayarannya.`;
+            return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+        }
+
+        // Render HTML Card yang Clean
+        function renderProducts(products) {
+            const container = document.getElementById('product-container');
+            container.innerHTML = '';
+
+            products.forEach(item => {
+                const finalLink = item.link ? item.link : generateWALink(item.name);
+
+                // Logic Badge (Tampilan minimalis)
+                let badgeHTML = '';
+                if(item.badge) {
+                    const badgeStyle = item.category === 'free' 
+                        ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' 
+                        : 'bg-brand-red/10 text-brand-red border-brand-red/20';
+
+                    badgeHTML = `<span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase border backdrop-blur-md ${badgeStyle}">${item.badge}</span>`;
+                }
+
+                const priceHTML = item.price === 0 
+                    ? '<span class="text-emerald-400 font-semibold">Free</span>' 
+                    : `<span class="text-white font-semibold">${item.displayPrice}</span>`;
+
+                const btnHTML = item.price === 0
+                    ? `<a href="${finalLink}" target="_blank" class="w-full mt-4 block text-center py-3 rounded-xl bg-zinc-800 text-white text-sm font-medium hover:bg-zinc-700 transition-colors">Download</a>`
+                    : `<a href="${finalLink}" target="_blank" class="w-full mt-4 block text-center py-3 rounded-xl bg-white text-black text-sm font-bold hover:bg-zinc-200 transition-colors">Buy Now</a>`;
+
+                const html = `
+                <div class="group product-item" data-category="${item.category}">
+                    <div class="relative overflow-hidden rounded-2xl bg-brand-surface aspect-card mb-5 border border-brand-border group-hover:border-zinc-700 transition-all duration-300">
+                        ${badgeHTML}
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100">
+                        
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+
+                    <div class="px-1">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-white group-hover:text-brand-red transition-colors">${item.name}</h3>
+                            ${priceHTML}
+                        </div>
+                        <p class="text-sm text-zinc-500 line-clamp-2 leading-relaxed">${item.description}</p>
+                        ${btnHTML}
+                    </div>
+                </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        }
+
+        // Logic Filter dengan Tab Button
+        function filterSelection(category, btnElement) {
+            // 1. Update UI Button
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                // Reset ke style inactive
+                btn.className = "filter-btn px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 bg-brand-surface border border-brand-border text-zinc-400 hover:text-white hover:border-zinc-600 hover:bg-brand-border cursor-pointer";
+            });
+
+            // Set tombol yang diklik ke style active
+            btnElement.className = "filter-btn active px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-white text-black shadow-lg shadow-white/10 ring-2 ring-white transform hover:-translate-y-0.5 cursor-pointer";
+
+            // 2. Filter Grid
+            const items = document.querySelectorAll('.product-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    item.classList.add('animate__fadeIn');
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Load Data
+        fetch('unif.json')
+            .then(res => res.json())
+            .then(data => {
+                allProducts = data;
+                renderProducts(data);
+            })
+            .catch(err => console.error("Gagal load data", err));
+
+    </script>
+</body>
+</html>
